@@ -11,6 +11,7 @@ struct Bubble {
     r: f64,
 }
 
+// constructor
 impl Bubble {
     pub fn new(num: impl Into<Option<f64>>) -> Bubble {
         let r = (random::<f64>() * (WIDTH / 8.0)) + 5.0;
@@ -37,8 +38,9 @@ fn main() {
 
     let color_fondo = [221.0 / 255.0, 105.0 / 255.0, 49.0 / 255.0, 1.0];
 
-    let mut bubble_vec: Vec<Bubble> = get_bubbles();
+    let mut bubble_vec: Vec<Bubble> = get_bubbles(); // generates our lava bubbles //
 
+    // this initialize our game //
     let mut window: PistonWindow = WindowSettings::new("Lava Lamp", [WIDTH, HEIGHT])
         .exit_on_esc(true)
         .build()
@@ -67,7 +69,7 @@ fn main() {
             let bubbs = &mut bubble_vec;
 
             for burbuja in bubbs {
-                burbuja.y = burbuja.speed * u.dt;
+                burbuja.y -= burbuja.speed * u.dt;
                 if burbuja.y + burbuja.r <= 0.0 {
                     burbuja.y = HEIGHT + burbuja.r
                 };
